@@ -11,7 +11,6 @@ router.get('/', function (req, res) {
   res.send('Wiki home page');
 });
 
-app.get('/', (req, res) => res.send('Hi'));
 app.get('/api/test', (req, res) => res.send({ message: 'Hello' }));
 app.get('/api/profile', async (req, res) => {
   let page = req.query.page;
