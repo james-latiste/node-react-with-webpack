@@ -1,0 +1,11 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-image: linear-gradient(to right, lightblue, pink);
+}
+
+form {
+  width: 400px;
+  display: inline-block;
+  padding: 10px 0;
+}
