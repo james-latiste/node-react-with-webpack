@@ -1,56 +1,61 @@
-const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: __dirname,
-  entry: ["./src/client/index.js"],
+  entry: ['./src/client/index.js'],
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
-    publicPath: "/"
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    publicPath: '/',
   },
+  mode: 'development',
   devServer: {
     open: true,
     port: 3000,
     proxy: {
-      "/api": "http://localhost:5000"
+      '/api': 'http://localhost:5000',
     },
-    client: { webSocketTransport: "ws" },
-    webSocketServer: "ws"
+    client: { webSocketTransport: 'ws' },
+    webSocketServer: 'ws',
   },
   resolve: {
-    extensions: [".jsx", ".js", "*"]
+    extensions: ['.jsx', '.js', '*'],
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: "babel-loader",
-        exclude: /node_modules/
+        use: 'babel-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader"
-        ]
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|j?g|svg|gif)?$/,
-        use: "file-loader"
-      }
-    ]
+        use: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "public/index.html"),
-      filename: "index.html",
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html',
       inject: false,
-      favicon: "./public/favicon.ico"
-    })
-  ]
+      favicon: './public/favicon.ico',
+    }),
+  ],
 };
