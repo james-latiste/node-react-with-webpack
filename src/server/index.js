@@ -5,6 +5,12 @@ const app = express();
 app.use(express.static('dist'));
 app.use(express.json());
 
+var router = express.Router();
+
+router.get('/', function (req, res) {
+  res.send('Wiki home page');
+});
+
 app.get('/', (req, res) => res.send('Hi'));
 app.get('/api/test', (req, res) => res.send({ message: 'Hello' }));
 app.get('/api/profile', async (req, res) => {
