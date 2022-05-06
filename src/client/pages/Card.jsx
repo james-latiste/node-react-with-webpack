@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   InputGroup,
   FormControl,
   Container,
   Row,
-  Col
-} from "react-bootstrap";
+  Col,
+} from 'react-bootstrap';
 // import ButtonGroup from "react-bootstrap/ButtonGroup";
 // import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
@@ -14,6 +14,23 @@ import {
 1. Card Class
 2. Defaults 
 */
+const axios = require('axios');
+
+function updateBalance(c) {
+  axios
+    .get('/api/user/changeBalance')
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+}
 
 function InputWithButtons(props) {
   const [count, setCount] = useState(0);
@@ -45,7 +62,7 @@ function InputWithButtons(props) {
       >
         +
       </Button>
-      <Button>ok</Button>
+      <Button onClick={() => updateBalance(count)}>ok</Button>
     </InputGroup>
   );
 }
@@ -53,7 +70,7 @@ function InputWithButtons(props) {
 function ListLayout(props) {
   return (
     <div className="styleCard" id={props.id}>
-      <div style={{ width: props.width + "px" }}>
+      <div style={{ width: props.width + 'px' }}>
         <Container fluid>
           <Row className="">
             <Col>
@@ -67,7 +84,7 @@ function ListLayout(props) {
             <Col sm={1}>
               <span className="styleDescription">{props.stock} </span>
             </Col>
-            <span style={{ maxWidth: 180, minWidth: 140 }}>
+            <span style={{ maxWidth: 180, minWidth: 150 }}>
               <InputWithButtons stock={props.stock} />
             </span>
           </Row>

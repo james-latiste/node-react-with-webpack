@@ -1,10 +1,10 @@
-import { React, useState } from "react";
-import "./login.css";
-import { Button, Form, Jumbotron } from "react-bootstrap";
+import { React, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import './login.css';
 
 export default function LoginPage() {
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const idHandler = (e) => setUserName(e.target.value);
 

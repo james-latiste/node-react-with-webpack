@@ -18,6 +18,7 @@ module.exports = {
     },
     client: { webSocketTransport: 'ws' },
     webSocketServer: 'ws',
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.jsx', '.js', '*'],

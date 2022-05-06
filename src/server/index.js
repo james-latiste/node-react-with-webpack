@@ -4,14 +4,24 @@ const app = express();
 
 app.use(express.static('dist'));
 app.use(express.json());
+app.get('/api/test', (req, res) => res.send({ message: 'Hello' }));
 
-var router = express.Router();
+const fs = require('fs');
+const fileName = __dirname + '/../model/user.json';
+const file = require(fileName);
 
-router.get('/', function (req, res) {
-  res.send('Wiki home page');
+app.get('/api/user/changeBalance', (req, res) => {
+  const value = file[0].balance;
+  file[0].balance = parseInt(value) + 1;
+
+  fs.writeFile(fileName, JSON.stringify(file), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log(JSON.stringify(file));
+    console.log('writing to ' + fileName);
+    res.send({ message: file });
+  });
 });
 
-app.get('/api/test', (req, res) => res.send({ message: 'Hello' }));
 app.get('/api/profile', async (req, res) => {
   let page = req.query.page;
   if (!page) page = '1';
@@ -46,6 +56,17 @@ app.get('/api/profile', async (req, res) => {
   return res
     .status(200)
     .json({ count: count, next: next, previous: previous, data: profiles });
+});
+
+app.get('/*', function (req, res) {
+  res.sendFile(
+    path.join(__dirname + '../../public/index.html'),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));

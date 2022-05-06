@@ -1,11 +1,11 @@
-import { React } from "react";
-import "./styles.css";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import OrderPage from "./pages/orderPage";
-import { OrderData } from "../model/data";
-import { Nav, NavDropdown } from "react-bootstrap";
-import Header from "./Header";
+import React from 'react';
+import './styles.css';
+import { BrowserRouter, Routes, Route, Outlet, Link } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import OrderPage from './pages/orderPage';
+import { OrderData } from '../model/data';
+import { Nav } from 'react-bootstrap';
+import Header from './Header';
 
 function Home() {
   return (
@@ -88,19 +88,21 @@ function Layout() {
 export default function App() {
   return (
     <div>
-      {/* Routes nest inside one another. Nested route paths build upon
-            parent route paths, and nested route elements render inside
-            parent route elements. See the note about <Outlet> below. */}
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="order" element={<Order />} />
-          <Route path="dashboard" element={<h2>Dashboard</h2>} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="*" element={<NoMatch />} />
-        </Route>
-      </Routes>
+      Routes nest inside one another. Nested route paths build upon parent route
+      paths, and nested route elements render inside parent route elements. See
+      the note about below.
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="order" element={<Order />} />
+            <Route path="dashboard" element={<h2>Dashboard</h2>} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

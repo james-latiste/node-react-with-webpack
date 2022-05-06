@@ -1,7 +1,8 @@
-import data from "../model/user.json";
+import React from 'react';
+import data from '../model/user.json';
 
 const newdata = data
-  .filter((prop) => prop.id === "0")
+  .filter((prop) => prop.id === '0')
   .map((data) => {
     return (
       <>

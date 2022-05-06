@@ -1,14 +1,1 @@
-[
-  {
-    "id": "0",
-    "balance": 100,
-    "point": 22,
-    "bonus": 33
-  },
-  {
-    "id": "1",
-    "balance": 200,
-    "point": 22,
-    "bonus": 33
-  }
-]
+[{"id":"0","balance":100,"point":22,"bonus":33},{"id":"1","balance":101,"point":22,"bonus":33}]
